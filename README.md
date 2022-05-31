@@ -1,7 +1,7 @@
 # NYCUDOPCS
  Course material of the introduction to computer and computer science of the Department of Photonics, NYCU
 
-Comming soon
+Coming soon
 
 ## Structures
 
@@ -19,7 +19,7 @@ root
   |      |     └─ Lecture3.ipynb      # Lecture 1
   ├─ 
   ├─ 
-  ├─ Comming soooooooooon
+  ├─ Coming soooooooooon
   ├─ 
   └─ Readme.md 
 ```
