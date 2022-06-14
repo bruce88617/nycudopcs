@@ -3,6 +3,11 @@
 
 Coming soon
 
+## Before you start reading the lectures
+
+**All link in the lectures is optimized in VS Code, not GitHub.**
+
+
 ## Structures
 
 ```
