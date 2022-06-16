@@ -1,5 +1,6 @@
 # NYCUDOPCS
- Course material of the introduction to computer and computer science of the Department of Photonics, NYCU
+ Course material of the introduction to computer and computer science of the <a href="https://dop.nycu.edu.tw/ch/index.html">Department of Photonics</a>, <a href="https://www.nycu.edu.tw/">NYCU</a>
+
 
 Coming soon
 
