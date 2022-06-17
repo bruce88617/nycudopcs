@@ -22,7 +22,10 @@ root
   |      |     └─ Lecture2.ipynb      # Lecture 2: Environment, Branching, and Iteration
   |      ├─ Lecture3
   |      |     ├─ assets              # Images in the handouts
-  |      |     └─ Lecture3.ipynb      # Lecture 3: Simple Numerical Algorithms
+  |      |     └─ Lecture3.ipynb      # Lecture 3: Simple Numerical Algorithms I
+  |      ├─ Lecture4
+  |      |     ├─ assets              # Images in the handouts
+  |      |     └─ Lecture4.ipynb      # Lecture 4: Abstraction, Decomposition, and Functions
   ├─ 
   ├─ 
   ├─ Coming soooooooooon
