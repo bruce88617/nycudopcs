@@ -26,7 +26,10 @@ root
   |      ├─ Lecture4
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture4.ipynb      # Lecture 4: Abstraction, Decomposition, and Functions
-  ├─ 
+  |      ├─ Lecture5
+  |      |     ├─ assets              # Images in the handouts
+  |      |     └─ Lecture5.ipynb      # Lecture 5: Tuples, Lists, Mutability, Aliasing, and Cloning
+  | 
   ├─ 
   ├─ Coming soooooooooon
   ├─ 
