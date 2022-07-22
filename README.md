@@ -29,7 +29,9 @@ root
   |      ├─ Lecture5
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture5.ipynb      # Lecture 5: Tuples, Lists, Mutability, Aliasing, and Cloning
-  | 
+  |      ├─ Lecture6
+  |      |     ├─ assets              # Images in the handouts
+  |      |     └─ Lecture6.ipynb      # Lecture 6: Recursion and Dictionaries| 
   ├─ 
   ├─ Coming soooooooooon
   ├─ 
