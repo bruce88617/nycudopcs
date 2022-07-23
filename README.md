@@ -32,6 +32,9 @@ root
   |      ├─ Lecture6
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture6.ipynb      # Lecture 6: Recursion and Dictionaries
+  |      ├─ Lecture7
+  |      |     ├─ assets              # Images in the handouts
+  |      |     └─ Lecture7.ipynb      # Lecture 7: Module, Exception, and Assertion
   | 
   ├─ 
   ├─ Coming soooooooooon
