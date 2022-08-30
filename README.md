@@ -35,6 +35,9 @@ root
   |      ├─ Lecture7
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture7.ipynb      # Lecture 7: Module, Packages, Exception, and Assertion
+  |      ├─ Lecture8
+  |      |     ├─ assets              # Images in the handouts
+  |      |     └─ Lecture8.ipynb      # Lecture 8: Introduction to Object-Oriented Programming I
   | 
   ├─ 
   ├─ Coming soooooooooon
