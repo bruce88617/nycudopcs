@@ -38,6 +38,9 @@ root
   |      ├─ Lecture8
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture8.ipynb      # Lecture 8: Introduction to Object-Oriented Programming I
+  |      ├─ Lecture9
+  |      |     ├─ assets              # Images in the handouts
+  |      |     └─ Lecture9.ipynb      # Lecture 9: Introduction to Object-Oriented Programming II
   | 
   ├─ 
   ├─ Coming soooooooooon
