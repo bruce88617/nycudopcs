@@ -14,33 +14,36 @@ Coming soon
 ```
 root
   ├─ Lectures                         # Folder for the handouts and assets of this course
-  |      ├─ Lecture1
+  |      ├─ Lecture01
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture1.ipynb      # Lecture 1: Introduction to Computation and Programming
-  |      ├─ Lecture2
+  |      ├─ Lecture02
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture2.ipynb      # Lecture 2: Environment, Branching, and Iteration
-  |      ├─ Lecture3
+  |      ├─ Lecture03
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture3.ipynb      # Lecture 3: Simple Numerical Algorithms I
-  |      ├─ Lecture4
+  |      ├─ Lecture04
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture4.ipynb      # Lecture 4: Abstraction, Decomposition, and Functions
-  |      ├─ Lecture5
+  |      ├─ Lecture05
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture5.ipynb      # Lecture 5: Tuples, Lists, Mutability, Aliasing, and Cloning
-  |      ├─ Lecture6
+  |      ├─ Lecture06
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture6.ipynb      # Lecture 6: Recursion and Dictionaries
-  |      ├─ Lecture7
+  |      ├─ Lecture07
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture7.ipynb      # Lecture 7: Module, Packages, Exception, and Assertion
-  |      ├─ Lecture8
+  |      ├─ Lecture08
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture8.ipynb      # Lecture 8: Introduction to Object-Oriented Programming I
-  |      ├─ Lecture9
+  |      ├─ Lecture09
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture9.ipynb      # Lecture 9: Introduction to Object-Oriented Programming II
+  |      ├─ Lecture10
+  |      |     ├─ assets              # Images in the handouts
+  |      |     └─ Lecture10.ipynb     # Lecture 10: Introduction to Computational Complexity
   | 
   ├─ 
   ├─ Coming soooooooooon
