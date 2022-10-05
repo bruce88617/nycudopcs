@@ -1,4 +1,8 @@
 *\.ipynb_checkpoints
 __pycache__/
 *.cpy
+*.xlsx
+Pick/*.ipynb
+Pick/1111-515401.csv
+
 
