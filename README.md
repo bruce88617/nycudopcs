@@ -48,6 +48,10 @@ root
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture11.ipynb     # Lecture 11: Simple Numerical Algorithms II
   | 
+  ├─ Pick
+  |      ├─ PickSys.py                # Random pick function
+  |      └─ main_PickSys.py           # Main scripts for random pick system of HWs
+  | 
   ├─ 
   ├─ Coming soooooooooon
   ├─ 
