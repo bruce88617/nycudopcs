@@ -46,7 +46,7 @@ root
   |      |     └─ Lecture10.ipynb     # Lecture 10: Introduction to Computational Complexity
   |      ├─ Lecture11
   |      |     ├─ assets              # Images in the handouts
-  |      |     └─ Lecture10.ipynb     # Lecture 11: Simple Numerical Algorithms II
+  |      |     └─ Lecture11.ipynb     # Lecture 11: Simple Numerical Algorithms II
   | 
   ├─ 
   ├─ Coming soooooooooon
