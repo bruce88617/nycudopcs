@@ -47,6 +47,9 @@ root
   |      ├─ Lecture11
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture11.ipynb     # Lecture 11: Simple Numerical Algorithms II
+  |      ├─ Lecture12
+  |      |     ├─ assets              # Images in the handouts
+  |      |     └─ Lecture12.ipynb     # Lecture 12: Scientific Computing and Data Visualization with Python I
   | 
   ├─ Pick
   |      ├─ PickSys.py                # Random pick function
