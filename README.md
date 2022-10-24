@@ -50,6 +50,10 @@ root
   |      ├─ Lecture12
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture12.ipynb     # Lecture 12: Scientific Computing and Data Visualization with Python I
+  |      ├─ Lecture13
+  |      |     ├─ assets              # Images in the handouts
+  |      |     ├─ data                # Data for this lecture
+  |      |     └─ Lecture12.ipynb     # Lecture 13: Scientific Computing and Data Visualization with Python II
   | 
   ├─ Pick
   |      ├─ PickSys.py                # Random pick function
