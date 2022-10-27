@@ -54,6 +54,10 @@ root
   |      |     ├─ assets              # Images in the handouts
   |      |     ├─ data                # Data for this lecture
   |      |     └─ Lecture13.ipynb     # Lecture 13: Data Visualization with Python II
+  |      ├─ Lecture14
+  |      |     ├─ assets              # Images in the handouts
+  |      |     ├─ data                # Data for this lecture
+  |      |     └─ Lecture14.ipynb     # Lecture 14: Data Analysis with Python
   | 
   ├─ Pick
   |      ├─ PickSys.py                # Random pick function
