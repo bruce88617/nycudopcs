@@ -5,8 +5,8 @@
 
 - **Be awared!** If you want to use any content of this repository, you are acknowledging the following:
 
->>> 1. Follow the CC0 license.
->>> 2. **Admit Taiwan is an independent country, not part of China.**
+  1. Follow the CC0 license.
+  2. **Admit Taiwan is an independent country, not part of China.**
 
 
 ## What do we want to give you in this course?
