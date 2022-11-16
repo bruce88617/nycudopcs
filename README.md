@@ -34,6 +34,8 @@ root
   |      |     └─ Lecture6.ipynb      # Lecture 6: Recursion and Dictionaries
   |      ├─ Lecture07
   |      |     ├─ assets              # Images in the handouts
+  |      |     ├─ example1            # Sample package 1 of this lecture
+  |      |     ├─ example2            # Sample package 2 of this lecture
   |      |     └─ Lecture7.ipynb      # Lecture 7: Module, Packages, Exception, and Assertion
   |      ├─ Lecture08
   |      |     ├─ assets              # Images in the handouts
