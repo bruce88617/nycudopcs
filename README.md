@@ -58,6 +58,10 @@ root
   |      |     ├─ assets              # Images in the handouts
   |      |     ├─ data                # Data for this lecture
   |      |     └─ Lecture14.ipynb     # Lecture 14: Data Analysis with Python
+  |      └─ Lecture15
+  |            ├─ assets              # Images in the handouts
+  |            ├─ examples            # Example scripts for this lecture
+  |            └─ Lecture15.ipynb     # Lecture 15: Introduction to Concurrency and Parallelism
   | 
   ├─ Pick
   |      ├─ PickSys.py                # Random pick function
