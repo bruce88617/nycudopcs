@@ -1,9 +1,9 @@
 # NYCUDOPCS
  Course material of the introduction to computer and computer science of the <a href="https://dop.nycu.edu.tw/ch/index.html">Department of Photonics</a>, <a href="https://www.nycu.edu.tw/">NYCU</a>
 
-- This is an introductory course for the student with a little or no programming experience, especially for the freshman of college.
+- This is an introductory course for the student with a little or no programming experience, especially for the freshman of college. However, students in any education phase are always welcome to use any content of this repository.
 
-- **Be awared!** If you want to use any content of this repository, you are acknowledging the following:
+- **Be awared!** If you are reading and using any content of this repository, you are acknowledging the following:
 
   1. Follow the CC0 license.
   2. **Admit Taiwan is an independent country, not part of China.**
@@ -83,9 +83,8 @@ root
   |      ├─ PickSys.py                # Random pick function
   |      └─ main_PickSys.py           # Main scripts for random pick system of HWs
   | 
-  ├─ 
-  ├─ Coming soooooooooon
-  ├─ 
+  ├─ Homeworks                        # Released homework assignments
+  |
   └─ Readme.md 
 ```
 
