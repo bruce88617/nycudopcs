@@ -4,11 +4,7 @@ Difference between mp.Pool.apply & mp.Pool.apply_async
 
 import multiprocessing as mp
 import time
-
-
-def square(num, t=1):
-    time.sleep(t)
-    return num**2
+from jobs_mp import square
 
 
 if __name__ == "__main__":
@@ -28,6 +24,7 @@ if __name__ == "__main__":
     for i in range(10):
         result2.append(pool.apply_async(square, (i,1)))
     for res in result2:
+        # Use method "get" to return the value
         print(res.get())
     print("Execution time of example 7-2: {:.02f} sec.".format(time.time()-t))
 

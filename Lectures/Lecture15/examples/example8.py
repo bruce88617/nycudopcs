@@ -1,11 +1,6 @@
 import multiprocessing as mp
 import time
-
-
-def square(num, t=1):
-    time.sleep(t)
-    return num**2
-
+from jobs_mp import square
 
 if __name__ == "__main__":
     # Use mp.Pool to return the value
@@ -15,7 +10,7 @@ if __name__ == "__main__":
     print(result1)
     print("Execution time of example 8-1: {:.02f} sec.".format(time.time()-t))
 
-    # Without multiprocessing
+    # Pool.map_async
     t = time.time()
     pool = mp.Pool()
     result2 = []

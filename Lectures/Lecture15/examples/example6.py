@@ -1,10 +1,6 @@
 import multiprocessing as mp
 import time
-
-
-def square(num, t=1):
-    time.sleep(t)
-    return num**2
+from jobs_mp import square
 
 
 if __name__ == "__main__":
@@ -19,7 +15,7 @@ if __name__ == "__main__":
 
     for i in range(num_process):
         list_process.append(
-            mp.Process(target=square, args=(i,1))
+            mp.Process(target=square, args=(i,))
         )
 
         list_process[i].start()
@@ -32,6 +28,7 @@ if __name__ == "__main__":
  
     # Use mp.Pool.map to return the value
     t = time.time()
+    print("Example 6-2 has started.")
     pool = mp.Pool(mp.cpu_count())
     result1 = pool.map(square, range(10))
     print(result1)
@@ -39,6 +36,7 @@ if __name__ == "__main__":
 
     # Without multiprocessing
     t = time.time()
+    print("Example 6-3 has started.")
     result2 = []
     for i in range(10):
         result2.append(square(i))

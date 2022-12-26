@@ -1,24 +1,23 @@
 import multiprocessing as mp
-import time
-
-def job1(msg, t=1):
-    print("Print message: {} is working.".format(msg))
-    time.sleep(t)
-    print("{} is done.".format(msg))
-
-def job2(msg, t=5):
-    print("Print message: {} is working.".format(msg))
-    time.sleep(t)
-    print("{} is done.".format(msg))
-
+from jobs_mp import job1, job2
+import argparse
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Example 5")
+    parser.add_argument("--num", default=None, type=int, help="Number of processes")
+
+    opt= parser.parse_args()
+
+    if opt.num is None:
+        opt.num = mp.cpu_count()
+
     print("Example 5 has started.")
 
-    num_process = 4
+    print("CPU count:", mp.cpu_count())
+    
     list_process = []
 
-    for i in range(num_process):
+    for i in range(opt.num):
 
         if i%2 == 0:
             list_process.append(
