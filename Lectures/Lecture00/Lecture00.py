@@ -1,0 +1,19 @@
+"""
+Main script of Lecture00
+"""
+
+print("Running the script:", __file__)
+print("Hello world!")
+print("End.")
+
+
+"""
+Created on Sun Aug 7 01:23:45 2023
+
+@author: Xi Winnie, student ID
+
+@collaborators: Jane Doe, her student ID
+                John Doe, his student ID
+"""
+
+
