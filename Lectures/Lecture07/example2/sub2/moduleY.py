@@ -4,6 +4,6 @@ def sayHello2X():
     print("Hello, X!")
 
 def encounter():
-    print("Someday, I encouter X...")
+    print("Someday, I meet X...")
 
 
