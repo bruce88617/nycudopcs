@@ -5,5 +5,5 @@ def sayHello2Y():
 
 
 def encounter():
-    print("Someday, I encouter Y...")
+    print("Someday, I meet Y...")
 
