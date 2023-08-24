@@ -30,21 +30,27 @@ root
   ├─ Lectures                         # Folder for the handouts and assets of this course
   |      ├─ Lecture01                 # Lecture 1: Introduction to Computation and Programming
   |      |     └─ Lecture01.py
+  |      |
   |      ├─ Lecture02                 # Lecture 2: Python Basics, Branching, and Iteration    
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture02.ipynb
+  |      |
   |      ├─ Lecture03                 # Lecture 3: Simple Numerical Algorithms I
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture03.ipynb
+  |      |
   |      ├─ Lecture04                 # Lecture 4: Abstraction, Decomposition, and Functions
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture04.ipynb
+  |      |
   |      ├─ Lecture05                 # Lecture 5: Tuples, Lists, Mutability, Aliasing, and Cloning
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture05.ipynb
+  |      |
   |      ├─ Lecture06                 # Lecture 6: Recursion and Dictionaries
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture06.ipynb
+  |      |
   |      ├─ Lecture07                 # Lecture 7: Module, Packages, Exception, and Assertion
   |      |     ├─ assets              # Images in the handouts
   |      |     ├─ example1            # Sample package 1 of this lecture
@@ -53,29 +59,37 @@ root
   |      |     ├─ main_example1.py    # Main script of example 1
   |      |     ├─ main_example2.py    # Main script of example 2
   |      |     └─ nycudopcs2023.py    # Sample module
+  |      |
   |      ├─ Lecture08                 # Lecture 8: Introduction to Object-Oriented Programming I
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture08.ipynb
+  |      |
   |      ├─ Lecture09                 # Lecture 9: Introduction to Object-Oriented Programming II
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture09.ipynb
+  |      |
   |      ├─ Lecture10                 # Lecture 10: Introduction to Computational Complexity
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture10.ipynb
+  |      |
   |      ├─ Lecture11                 # Lecture 11: Simple Numerical Algorithms II
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture11.ipynb
+  |      |
   |      ├─ Lecture12                 # Lecture 12: Data Visualization with Python I
   |      |     ├─ assets              # Images in the handouts
   |      |     └─ Lecture12.ipynb
+  |      |
   |      ├─ Lecture13                 # Lecture 13: Data Visualization with Python II
   |      |     ├─ assets              # Images in the handouts
   |      |     ├─ data                # Data for this lecture
   |      |     └─ Lecture13.ipynb
+  |      |
   |      ├─ Lecture14                 # Lecture 14: Data Analysis with Python
   |      |     ├─ assets              # Images in the handouts
   |      |     ├─ data                # Data for this lecture
   |      |     └─ Lecture14.ipynb
+  |      |
   |      └─ Lecture15                 # Lecture 15: Introduction to Concurrency and Parallelism
   |            ├─ assets              # Images in the handouts
   |            ├─ examples            # Example scripts for this lecture
@@ -84,8 +98,6 @@ root
   ├─ Pick
   |      ├─ PickSys.py                # Random pick function
   |      └─ main_PickSys.py           # Main scripts for random pick system of HWs
-  | 
-  ├─ Homeworks                        # Released homework assignments
   |
   └─ Readme.md 
 ```
