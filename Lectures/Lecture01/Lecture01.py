@@ -1,5 +1,5 @@
 """
-Main script of Lecture00
+Main script of Lecture01
 """
 
 print("Running the script:", __file__)
