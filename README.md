@@ -9,6 +9,13 @@
   2. **Admit Taiwan :taiwan: is an independent country, not part of China.**
 
 
+## 112A 雞腿便當指數
+
+|#|Date|Person|
+|:--:|:--:|:--:|
+|1|???|???|
+
+
 ## What do we want to give you in this course?
 
 1. To provide an understanding of the role that programming can play in solving engineering issues.
