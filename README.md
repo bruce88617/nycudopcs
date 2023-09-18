@@ -13,7 +13,7 @@
 
 |#|Date|Person|
 |:--:|:--:|:--:|
-|1|???|???|
+|1|2023.9.18|112514013|
 
 
 ## What do we want to give you in this course?
