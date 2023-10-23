@@ -1,13 +1,11 @@
-# moduleZ of the "example2" package
+"""
+moduleZ of the "example2" package
+"""
+
 
 # absolute import
 from example2.sub1.moduleX import sayHello2Y
 from example2.sub2.moduleY import sayHello2X
-
-
-# # relative import
-# from .sub1.moduleX import sayHello2Y
-# from .sub2.moduleY import sayHello2X
 
 
 def greeting():

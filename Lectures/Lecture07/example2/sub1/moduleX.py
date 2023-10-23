@@ -1,4 +1,7 @@
-# moduleX of the "sub1" subpackage in the "example2" package
+"""
+moduleX of the "sub1" subpackage in the "example2" package
+"""
+
 
 def sayHello2Y():
     print("Hello, Y!")

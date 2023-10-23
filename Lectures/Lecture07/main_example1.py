@@ -1,4 +1,7 @@
-# Main scripts of the "example1" package
+"""
+Main scripts of the "example1" package
+"""
+
 
 # Absolute import (strongly recommended)
 from example1.module1 import hello

@@ -1,4 +1,7 @@
-# module2 of the "example1" package
+"""
+module2 of the "example1" package
+"""
+
 
 def youfool():
     print("You fool!!!")
