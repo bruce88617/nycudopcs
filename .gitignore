@@ -1,7 +1,6 @@
 *\.ipynb_checkpoints
 __pycache__/
 *.cpy
-*.xlsx
 Pick/*.ipynb
 Pick/1121-515401.csv
 HWs
