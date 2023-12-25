@@ -17,6 +17,7 @@ print("="*50)
 thread1.start()
 thread2.start()
 thread1.join()
+# thread2.join()
 print("="*50)
 
 print("Current thread:", threading.current_thread())
