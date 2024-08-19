@@ -1,0 +1,50 @@
+# Table of contents
+
+
+format: jb-book
+root: chapters/intro
+title: Introduction
+options:
+  numbered: true
+
+parts:
+  - caption: "Part I: Fundamentals of Computer Science and Python Programming"
+    chapters:
+    - file: chapters/01/intro_chap1.md
+      title: 01. Overview
+    - file: chapters/02/chap02.ipynb
+      title: 02. Python Basics, Branching, and Iteration
+    - file: chapters/03/chap03.ipynb
+      title: 03. Simple Numerical Algorithms I
+    - file: chapters/04/chap04.ipynb
+      title: 04. Abstraction, Decomposition, and Functions
+    - file: chapters/05/chap05.ipynb
+      title: 05. Tuples, Lists, Mutability, Aliasing, and Cloning
+    - file: chapters/06/chap06.ipynb
+      title: 06. Recursion and Dictionaries
+    - file: chapters/07/chap07.ipynb
+      title: 07. Modules, Packages, Exception, and Assertion
+    - file: chapters/08/chap08.ipynb
+      title: 08. Introduction to Object-Oriented Programming I
+    - file: chapters/09/chap09.ipynb
+      title: 09. Introduction to Object-Oriented Programming II
+    - file: chapters/10/chap10.ipynb
+      title: 10. Introduction to Computational Complexity
+    - file: chapters/11/chap11.ipynb
+      title: 11. Simple Numerical Algorithms II
+
+  - caption: "Part II: Scientific Computing and Data Visualization with Python"
+    chapters:
+    - file: chapters/12/chap12.ipynb
+      title: 12. Introduction to NumPy and Matplotlib I
+    - file: chapters/13/chap13.ipynb
+      title: 13. Introduction to NumPy and Matplotlib II
+    - file: chapters/14/chap14.ipynb
+      title: 14. Pandas and More Data Visualization
+  
+  - caption: "Archives"
+    chapters:
+    - file: archives/IntroConcurrencyParallelism.ipynb
+      title: A01. Introduction to Concurrency and Parallelism
+
+

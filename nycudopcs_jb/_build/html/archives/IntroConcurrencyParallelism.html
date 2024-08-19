@@ -1,0 +1,1024 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to Concurrency and Parallelism &#8212; Introduction to Computer Science and Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'archives/IntroConcurrencyParallelism';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Pandas and More Data Visualization" href="../chapters/14/chap14.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../chapters/intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nycu_logo.png" class="logo__image only-light" alt="Introduction to Computer Science and Programming - Home"/>
+    <script>document.write(`<img src="../_static/nycu_logo.png" class="logo__image only-dark" alt="Introduction to Computer Science and Programming - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../chapters/intro.html">
+                    Introduction to Computer Science and Programming
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I: Fundamentals of Computer Science and Python Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapters/01/intro_chap1.html">01. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/02/chap02.html">02. Python Basics, Branching, and Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/03/chap03.html">03. Simple Numerical Algorithms I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/04/chap04.html">04. Abstraction, Decomposition, and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/05/chap05.html">05. Tuples, Lists, Mutability, Aliasing, and Cloning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/06/chap06.html">06. Recursion and Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/07/chap07.html">07. Modules, Packages, Exception, and Assertion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/08/chap08.html">08. Introduction to Object-Oriented Programming I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/09/chap09.html">09. Introduction to Object-Oriented Programming II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/10/chap10.html">10. Introduction to Computational Complexity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/11/chap11.html">11. Simple Numerical Algorithms II</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II: Scientific Computing and Data Visualization with Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapters/12/chap12.html">12. Introduction to NumPy and Matplotlib I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/13/chap13.html">13. Introduction to NumPy and Matplotlib II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/14/chap14.html">14. Pandas and More Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archives</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">A01. Introduction to Concurrency and Parallelism</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Farchives/IntroConcurrencyParallelism.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/archives/IntroConcurrencyParallelism.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Concurrency and Parallelism</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today"><strong>Today</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concurrency-vs-parallelism"><strong>Concurrency vs. parallelism</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example">Practical example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-threading"><strong>Multi-threading</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-build-in-module-threading">Python build-in module <code class="docutils literal notranslate"><span class="pre">threading</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-create-2-threads-by-thread">Example 1: create 2 threads by <code class="docutils literal notranslate"><span class="pre">Thread</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-join">Example 2: <code class="docutils literal notranslate"><span class="pre">join</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-daemon-thread">Example 3: <code class="docutils literal notranslate"><span class="pre">daemon</span></code> thread</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-combine-with-class">Example 4: combine with <code class="docutils literal notranslate"><span class="pre">class</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-summary-of-multi-threading">Brief summary of <strong>multi-threading</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-processing"><strong>Multi-processing</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5-mp-process">Example 5: <code class="docutils literal notranslate"><span class="pre">mp.Process</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-6-mp-pool">Example 6: <code class="docutils literal notranslate"><span class="pre">mp.Pool</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-7-mp-pool-apply-mp-pool-apply-async">Example 7: <code class="docutils literal notranslate"><span class="pre">mp.Pool.apply</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">mp.Pool.apply_async</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-8-mp-pool-map-mp-pool-map-async">Example 8: <code class="docutils literal notranslate"><span class="pre">mp.Pool.map</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">mp.Pool.map_async</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-memory-and-lock"><strong>Shared memory and Lock</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-shared-memory-mp-value-and-mp-array">Basic shared memory <code class="docutils literal notranslate"><span class="pre">mp.Value</span></code> and <code class="docutils literal notranslate"><span class="pre">mp.Array</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-9-race-condition">Example 9: Race condition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-10-create-a-lock">Example 10: Create a <code class="docutils literal notranslate"><span class="pre">Lock</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-11-create-a-semaphore">Example 11: Create a <code class="docutils literal notranslate"><span class="pre">Semaphore</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rlock"><code class="docutils literal notranslate"><span class="pre">RLock</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-concurrency-and-parallelism">
+<h1>Introduction to Concurrency and Parallelism<a class="headerlink" href="#introduction-to-concurrency-and-parallelism" title="Link to this heading">#</a></h1>
+<section id="last-time">
+<h2>Last time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Python package: Pandas</p></li>
+</ul>
+</section>
+<section id="today">
+<h2><strong>Today</strong><a class="headerlink" href="#today" title="Link to this heading">#</a></h2>
+<html>
+<head>
+</head>
+<body>
+<ul>
+  <li><a href="#tag1">Concurrency vs. parallelism</a></li>
+  <li><a href="#tag2">Multi-threading</a></li>
+  <li><a href="#tag3">Multi-processing</a></li>
+  <li><a href="#tag4">Shared memory and Lock</a></li>
+</ul>
+</body><p><a id="tag1"></a></p>
+</section>
+<section id="concurrency-vs-parallelism">
+<h2><strong>Concurrency vs. parallelism</strong><a class="headerlink" href="#concurrency-vs-parallelism" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Concurrency is about dealing with lots of things at once.<br />
+Parallelism is about doing lots of things at once.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                                      - Rob Pike
+</pre></div>
+</div>
+</div></blockquote>
+<img align="center" height=auto width=600px src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture15/assets/fig1.png">
+<hr class="docutils" />
+<section id="practical-example">
+<h3>Practical example<a class="headerlink" href="#practical-example" title="Link to this heading">#</a></h3>
+<img align="center" height=auto width=700px src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture15/assets/fig2.png">
+<hr class="docutils" />
+<p><a id="tag2"></a></p>
+</section>
+</section>
+<section id="multi-threading">
+<h2><strong>Multi-threading</strong><a class="headerlink" href="#multi-threading" title="Link to this heading">#</a></h2>
+<section id="python-build-in-module-threading">
+<h3>Python build-in module <code class="docutils literal notranslate"><span class="pre">threading</span></code><a class="headerlink" href="#python-build-in-module-threading" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Thread-based parallelism</p></li>
+<li><p>Suitable for heavy I/O task (e.g. reading &amp; writing files)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">job1</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current thread:&quot;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">())</span>
+    <span class="c1"># print(&quot;Active threads:&quot;, threading.active_count())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Print message: </span><span class="si">{}</span><span class="s2"> is working.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is done.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">job2</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current thread:&quot;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">())</span>
+    <span class="c1"># print(&quot;Active threads:&quot;, threading.active_count())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Print message: </span><span class="si">{}</span><span class="s2"> is working.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is done.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-1-create-2-threads-by-thread">
+<h3>Example 1: create 2 threads by <code class="docutils literal notranslate"><span class="pre">Thread</span></code><a class="headerlink" href="#example-1-create-2-threads-by-thread" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thread1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">job1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;T1&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Thread 1&quot;</span><span class="p">,))</span>
+<span class="n">thread2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">job2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;T2&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Thread 2&quot;</span><span class="p">,))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current thread:&quot;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">thread1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">thread2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current thread:&quot;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Active threads:&quot;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">active_count</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Current thread: &lt;_MainThread(MainThread, started 11740)&gt;
+==================================================
+Current thread: &lt;Thread(T1, started 664)&gt;
+Print message: Thread 1 is working.
+Current thread: &lt;Thread(T2, started 16952)&gt;
+Print message: Thread 2 is working.
+==================================================
+Current thread: &lt;_MainThread(MainThread, started 11740)&gt;
+Active threads: 7
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-2-join">
+<h3>Example 2: <code class="docutils literal notranslate"><span class="pre">join</span></code><a class="headerlink" href="#example-2-join" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Temporately stop the <code class="docutils literal notranslate"><span class="pre">MainThread</span></code> until all thread has finished.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thread1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">job1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;T1&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Thread 1&quot;</span><span class="p">,))</span>
+<span class="n">thread2</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">job2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;T2&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Thread 2&quot;</span><span class="p">,))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current thread:&quot;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">thread1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">thread2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">thread1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">thread2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Current thread:&quot;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Active threads:&quot;</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">active_count</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Current thread: &lt;_MainThread(MainThread, started 11740)&gt;
+==================================================
+Current thread: &lt;Thread(T1, started 15984)&gt;
+Print message: Thread 1 is working.
+Current thread: &lt;Thread(T2, started 13492)&gt;
+Print message: Thread 2 is working.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thread 1 is done.
+Thread 1 is done.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thread 2 is done.
+Thread 2 is done.
+==================================================
+Current thread: &lt;_MainThread(MainThread, started 11740)&gt;
+Active threads: 5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-3-daemon-thread">
+<h3>Example 3: <code class="docutils literal notranslate"><span class="pre">daemon</span></code> thread<a class="headerlink" href="#example-3-daemon-thread" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Automatically stop the thread when <code class="docutils literal notranslate"><span class="pre">MainThread</span></code> terminates.</p></li>
+<li><p>There are bugs in <code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">kernel</span></code>, try the code in <code class="docutils literal notranslate"><span class="pre">example3.py</span></code>.</p></li>
+</ul>
+<img align="center" height=auto width=700px src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture15/assets/fig4.png">
+<hr class="docutils" />
+</section>
+<section id="example-4-combine-with-class">
+<h3>Example 4: combine with <code class="docutils literal notranslate"><span class="pre">class</span></code><a class="headerlink" href="#example-4-combine-with-class" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">multithread1</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_list</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">input_list</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">job1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the square number of all elements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Thread </span><span class="si">{}</span><span class="s2"> is starting.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">idx</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">all_thread</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Create multi-thread</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)):</span>
+            <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">job1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;T</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">i</span><span class="p">))</span>
+            
+            <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>     <span class="c1"># What is the difference?</span>
+            <span class="n">all_thread</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>    
+        
+        <span class="c1"># Temporately stop the main thread</span>
+        <span class="k">for</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">all_thread</span><span class="p">:</span>
+            <span class="c1"># thread.start()     # What is the difference?</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]]</span>
+
+<span class="n">test1</span> <span class="o">=</span> <span class="n">multithread1</span><span class="p">(</span><span class="n">arr1</span><span class="p">)</span>
+<span class="n">test1</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test1</span><span class="o">.</span><span class="n">get_data</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thread 0 is starting.
+Thread 1 is starting.
+Thread 2 is starting.
+Thread 3 is starting.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, 4, 9], [16, 25, 36], [49, 64, 81], [100, 121, 144]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="brief-summary-of-multi-threading">
+<h3>Brief summary of <strong>multi-threading</strong><a class="headerlink" href="#brief-summary-of-multi-threading" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Quick and easy to use</p></li>
+<li><p>Achieve parallelism via <strong>context-switch of CPU</strong> (only use 1 CPU, low efficiency)</p></li>
+</ul>
+<img align="center" height=auto width=1000px src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture15/assets/fig3.png"><p><a id="tag3"></a></p>
+</section>
+</section>
+<section id="multi-processing">
+<h2><strong>Multi-processing</strong><a class="headerlink" href="#multi-processing" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use multiple CPUs to accomplish jobs</p></li>
+<li><p>Require data transfer in different CPUs while execution</p></li>
+<li><p>Suitable for complex tasks (<span class="math notranslate nohighlight">\(\text{execution time} \ggg \text{data transfer time}\)</span>)</p></li>
+</ul>
+<section id="example-5-mp-process">
+<h3>Example 5: <code class="docutils literal notranslate"><span class="pre">mp.Process</span></code><a class="headerlink" href="#example-5-mp-process" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>There are bugs in <code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">kernel</span></code>, try the code in <code class="docutils literal notranslate"><span class="pre">example5.py</span></code>.</p></li>
+<li><p>There is <strong>NO gaurantee</strong> that all process will be finished sequentially.</p></li>
+</ul>
+<img align="center" height=auto width=700px src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture15/assets/fig5.png">
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CPU count:&quot;</span><span class="p">,</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU count: 6
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-6-mp-pool">
+<h3>Example 6: <code class="docutils literal notranslate"><span class="pre">mp.Pool</span></code><a class="headerlink" href="#example-6-mp-pool" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>There are bugs in <code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">kernel</span></code>, try the code in <code class="docutils literal notranslate"><span class="pre">example6.py</span></code>.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">mp.Pool</span></code> to create a <strong>pool</strong> of processes.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">mp.Pool.map</span></code> to arrange all process and return the result.</p></li>
+</ul>
+<img align="center" height=auto width=700px src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture15/assets/fig6.png">
+<hr class="docutils" />
+</section>
+<section id="example-7-mp-pool-apply-mp-pool-apply-async">
+<h3>Example 7: <code class="docutils literal notranslate"><span class="pre">mp.Pool.apply</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">mp.Pool.apply_async</span></code><a class="headerlink" href="#example-7-mp-pool-apply-mp-pool-apply-async" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>There are bugs in <code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">kernel</span></code>, try the code in <code class="docutils literal notranslate"><span class="pre">example7.py</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mp.Pool.apply</span></code> will block the main process untill the result is ready.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mp.Pool.apply_async</span></code> returns a <code class="docutils literal notranslate"><span class="pre">AsyncResult</span></code> object which requires method attribute <code class="docutils literal notranslate"><span class="pre">get</span></code> to return the value.</p></li>
+</ul>
+<img align="center" height=auto width=700px src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture15/assets/fig7.png">
+<hr class="docutils" />
+</section>
+<section id="example-8-mp-pool-map-mp-pool-map-async">
+<h3>Example 8: <code class="docutils literal notranslate"><span class="pre">mp.Pool.map</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">mp.Pool.map_async</span></code><a class="headerlink" href="#example-8-mp-pool-map-mp-pool-map-async" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>There are bugs in <code class="docutils literal notranslate"><span class="pre">ipython</span> <span class="pre">kernel</span></code>, try the code in <code class="docutils literal notranslate"><span class="pre">example7.py</span></code>.</p></li>
+<li><p>Same as the <code class="docutils literal notranslate"><span class="pre">apply_async</span></code>, <code class="docutils literal notranslate"><span class="pre">map_async</span></code> returns a <code class="docutils literal notranslate"><span class="pre">AsyncResult</span></code> object which requires method attribute <code class="docutils literal notranslate"><span class="pre">get</span></code> to return the value.</p></li>
+</ul>
+<p><a id="tag4"></a></p>
+</section>
+</section>
+<section id="shared-memory-and-lock">
+<h2><strong>Shared memory and Lock</strong><a class="headerlink" href="#shared-memory-and-lock" title="Link to this heading">#</a></h2>
+<section id="basic-shared-memory-mp-value-and-mp-array">
+<h3>Basic shared memory <code class="docutils literal notranslate"><span class="pre">mp.Value</span></code> and <code class="docutils literal notranslate"><span class="pre">mp.Array</span></code><a class="headerlink" href="#basic-shared-memory-mp-value-and-mp-array" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">mp.Value</span></code> to create a value allocated in shared memory.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">mp.Array</span></code> to create a 1-dimensional list allocated in shared memory.</p></li>
+<li><p>List of common data type:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Type code</p></th>
+<th class="head text-center"><p>C type</p></th>
+<th class="head text-center"><p>Python type</p></th>
+<th class="head text-center"><p>Minimum size in bytes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&quot;b&quot;</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">signed</span> <span class="pre">char</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&quot;B&quot;</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&quot;i&quot;</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">signed</span> <span class="pre">int</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td class="text-center"><p>2 or 4</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&quot;I&quot;</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td class="text-center"><p>2 or 4</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&quot;f&quot;</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td class="text-center"><p>4</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&quot;d&quot;</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td class="text-center"><p>8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of shared memory</span>
+
+<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+
+<span class="n">value1</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> 
+<span class="n">value2</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="n">array</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">Array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-9-race-condition">
+<h3>Example 9: Race condition<a class="headerlink" href="#example-9-race-condition" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>When multiple threads or processes access the same memory (ex. a value in your workspace), unexpectable situation will arise. This is called the <strong>race condition</strong>.</p></li>
+</ul>
+<img align="center" height=auto width=700px src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture15/assets/fig8.png">
+<hr class="docutils" />
+</section>
+<section id="example-10-create-a-lock">
+<h3>Example 10: Create a <code class="docutils literal notranslate"><span class="pre">Lock</span></code><a class="headerlink" href="#example-10-create-a-lock" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">mp.Lock</span></code> to create a <strong>Lock</strong></p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">mp.Lock.acquire()</span></code> to block the memory from other processes or threads.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">mp.Lock.release()</span></code> to release the memory.</p></li>
+</ul>
+<img align="center" height=auto width=700px src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture15/assets/fig9.png">
+<hr class="docutils" />
+</section>
+<section id="example-11-create-a-semaphore">
+<h3>Example 11: Create a <code class="docutils literal notranslate"><span class="pre">Semaphore</span></code><a class="headerlink" href="#example-11-create-a-semaphore" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">mp.Semaphore</span></code> to create a <strong>Semaphore</strong></p></li>
+<li><p>Unlike the <code class="docutils literal notranslate"><span class="pre">mp.Lock</span></code>, <code class="docutils literal notranslate"><span class="pre">mp.Semaphore</span></code> can assign access to multiple processes.</p></li>
+</ul>
+<img align="center" height=auto width=700px src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture15/assets/fig10.png">
+<hr class="docutils" />
+</section>
+<section id="rlock">
+<h3><code class="docutils literal notranslate"><span class="pre">RLock</span></code><a class="headerlink" href="#rlock" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>A <strong>recursive</strong> lock</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">mp.RLock</span></code> to create a <strong>RLock</strong></p></li>
+<li><p>Unlike the <code class="docutils literal notranslate"><span class="pre">Lock</span></code>, <code class="docutils literal notranslate"><span class="pre">RLock</span></code> can be acquired by multiple times or multiple processes. However, if a <code class="docutils literal notranslate"><span class="pre">RLock</span></code> object is acquired <span class="math notranslate nohighlight">\(N\)</span> times by <code class="docutils literal notranslate"><span class="pre">acquire()</span></code>, it is locked unless it is released by <span class="math notranslate nohighlight">\(N\)</span> times of <code class="docutils literal notranslate"><span class="pre">release()</span></code>.</p></li>
+<li><p>Difference:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">Lock</span></code></p></th>
+<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">RLock</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>A <code class="docutils literal notranslate"><span class="pre">Lock</span></code> object can not be acquired again by any thread or process <br>unless it is released by the thread or process that owns it.</p></td>
+<td class="text-left"><p>A <code class="docutils literal notranslate"><span class="pre">RLock</span></code> object can be acquired multiple times <br>by any thread or process.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>A <code class="docutils literal notranslate"><span class="pre">Lock</span></code> object can be released by any thread or process.</p></td>
+<td class="text-left"><p>A <code class="docutils literal notranslate"><span class="pre">RLock</span></code> object can only be released by the thread/process that owns it.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Faster</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">RLock</span></code> is relatively slower than <code class="docutils literal notranslate"><span class="pre">Lock</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Multi-threading</p></th>
+<th class="head text-center"><p>Multi-processing</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Single processor</p></td>
+<td class="text-center"><p>Multiple processors</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Simple and intuitive</p></td>
+<td class="text-center"><p>Require data transfer</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Suitable for data I/O task</p></td>
+<td class="text-center"><p>Suitable for heavy computation task</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./archives"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../chapters/14/chap14.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">Pandas</span></code> and More Data Visualization</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today"><strong>Today</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concurrency-vs-parallelism"><strong>Concurrency vs. parallelism</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example">Practical example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-threading"><strong>Multi-threading</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-build-in-module-threading">Python build-in module <code class="docutils literal notranslate"><span class="pre">threading</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-create-2-threads-by-thread">Example 1: create 2 threads by <code class="docutils literal notranslate"><span class="pre">Thread</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-join">Example 2: <code class="docutils literal notranslate"><span class="pre">join</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-daemon-thread">Example 3: <code class="docutils literal notranslate"><span class="pre">daemon</span></code> thread</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-combine-with-class">Example 4: combine with <code class="docutils literal notranslate"><span class="pre">class</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-summary-of-multi-threading">Brief summary of <strong>multi-threading</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-processing"><strong>Multi-processing</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5-mp-process">Example 5: <code class="docutils literal notranslate"><span class="pre">mp.Process</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-6-mp-pool">Example 6: <code class="docutils literal notranslate"><span class="pre">mp.Pool</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-7-mp-pool-apply-mp-pool-apply-async">Example 7: <code class="docutils literal notranslate"><span class="pre">mp.Pool.apply</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">mp.Pool.apply_async</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-8-mp-pool-map-mp-pool-map-async">Example 8: <code class="docutils literal notranslate"><span class="pre">mp.Pool.map</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">mp.Pool.map_async</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-memory-and-lock"><strong>Shared memory and Lock</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-shared-memory-mp-value-and-mp-array">Basic shared memory <code class="docutils literal notranslate"><span class="pre">mp.Value</span></code> and <code class="docutils literal notranslate"><span class="pre">mp.Array</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-9-race-condition">Example 9: Race condition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-10-create-a-lock">Example 10: Create a <code class="docutils literal notranslate"><span class="pre">Lock</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-11-create-a-semaphore">Example 11: Create a <code class="docutils literal notranslate"><span class="pre">Semaphore</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rlock"><code class="docutils literal notranslate"><span class="pre">RLock</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chieh-En Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

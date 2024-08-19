@@ -1,0 +1,1041 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Recursion and Dictionaries &#8212; Introduction to Computer Science and Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/06/chap06';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Modules, Packages, Exception, and Assertion" href="../07/chap07.html" />
+    <link rel="prev" title="Tuples, Lists, Mutability, Aliasing, and Cloning" href="../05/chap05.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/nycu_logo.png" class="logo__image only-light" alt="Introduction to Computer Science and Programming - Home"/>
+    <script>document.write(`<img src="../../_static/nycu_logo.png" class="logo__image only-dark" alt="Introduction to Computer Science and Programming - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Computer Science and Programming
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I: Fundamentals of Computer Science and Python Programming</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01/intro_chap1.html">01. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02/chap02.html">02. Python Basics, Branching, and Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03/chap03.html">03. Simple Numerical Algorithms I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04/chap04.html">04. Abstraction, Decomposition, and Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05/chap05.html">05. Tuples, Lists, Mutability, Aliasing, and Cloning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">06. Recursion and Dictionaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07/chap07.html">07. Modules, Packages, Exception, and Assertion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08/chap08.html">08. Introduction to Object-Oriented Programming I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09/chap09.html">09. Introduction to Object-Oriented Programming II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10/chap10.html">10. Introduction to Computational Complexity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11/chap11.html">11. Simple Numerical Algorithms II</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II: Scientific Computing and Data Visualization with Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../12/chap12.html">12. Introduction to NumPy and Matplotlib I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13/chap13.html">13. Introduction to NumPy and Matplotlib II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14/chap14.html">14. Pandas and More Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archives</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../archives/IntroConcurrencyParallelism.html">A01. Introduction to Concurrency and Parallelism</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/06/chap06.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/06/chap06.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Recursion and Dictionaries</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today"><strong>Today</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursion"><strong>Recursion</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-i-multiplication">Example I: multiplication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-ii-factorial">Example II: factorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#think-carefully-before-you-programming">Think carefully before you programming</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-i-sum-of-harmonic-series">Exercise I: sum of harmonic series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-ii-fibonacci-number">Exercise II: Fibonacci number</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-variable"><strong>Global variable</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries"><strong>Dictionaries</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-additional-key-to-dict">Add additional <code class="docutils literal notranslate"><span class="pre">key</span></code> to <code class="docutils literal notranslate"><span class="pre">dict</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-with-multiple-input-arguments"><strong>Function with multiple input arguments</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-iii-sum-of-geometric-series">Exercise III: sum of geometric series</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="recursion-and-dictionaries">
+<h1>Recursion and Dictionaries<a class="headerlink" href="#recursion-and-dictionaries" title="Link to this heading">#</a></h1>
+<section id="last-time">
+<h2>Last time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Tuples</p></li>
+<li><p>Lists</p></li>
+<li><p>Mutability and aliasing</p></li>
+<li><p>Cloning</p></li>
+</ul>
+</section>
+<section id="today">
+<h2><strong>Today</strong><a class="headerlink" href="#today" title="Link to this heading">#</a></h2>
+<html>
+<head>
+</head>
+<body>
+<ul>
+  <li><a href="#tag1">Recursion</a></li>
+  <li><a href="#tag2">Global variable</a></li>
+  <li><a href="#tag3">Dictionaries</a></li>
+  <li><a href="#tag4">Functions with multiple input arguments</a></li>
+</ul>
+</body><p><a id="tag1"></a></p>
+</section>
+<section id="recursion">
+<h2><strong>Recursion</strong><a class="headerlink" href="#recursion" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The basic idea of recursion is <strong>divide and conquer</strong></p></li>
+</ul>
+<br />
+<img align="center" height=400px width=auto src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture06/assets/fig01.png">
+<br />
+<ul class="simple">
+<li><p>How to implement by programming?</p>
+<ul>
+<li><p>Try to divide the original problem into small versions of the original problem</p></li>
+<li><p>In practical, write a function that calls itself</p></li>
+<li><p>Rule of thumb: <strong>AVOID CALLING ITSELF INFINITELY</strong></p></li>
+<li><p>There must be 1 or more base cases in your algorithm</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<section id="example-i-multiplication">
+<h3>Example I: multiplication<a class="headerlink" href="#example-i-multiplication" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Multiplication can be regarded as adding itself with designate times</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterative thinking</span>
+<span class="k">def</span> <span class="nf">multiI</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    x: multiplicand</span>
+<span class="sd">    a: multiplicator</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+<span class="c1"># recursive thinking</span>
+<span class="k">def</span> <span class="nf">multiR</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    x: multiplicand</span>
+<span class="sd">    a: multiplicator</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">multiR</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+  <br />
+  <img align="center" height=400px width=auto src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture06/assets/fig02.png">
+  <br />
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="example-ii-factorial">
+<h3>Example II: factorial<a class="headerlink" href="#example-ii-factorial" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>The factorial (denoted or represented as <span class="math notranslate nohighlight">\(n!\)</span>) for a positive number or integer (which is denoted by <span class="math notranslate nohighlight">\(n\)</span>) is the product of all the positive numbers preceding or equivalent to <span class="math notranslate nohighlight">\(n\)</span> (the positive integer).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterative thinking</span>
+<span class="k">def</span> <span class="nf">factI</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return n!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">*=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+<span class="c1"># recursive thinking</span>
+<span class="k">def</span> <span class="nf">factR</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return n!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factR</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="think-carefully-before-you-programming">
+<h3>Think carefully before you programming<a class="headerlink" href="#think-carefully-before-you-programming" title="Link to this heading">#</a></h3>
+<img align="center" height=400px width=auto src="https://raw.githubusercontent.com/bruce88617/nycudopcs/main/Lectures/Lecture06/assets/fig03.png">
+<br />
+</section>
+<hr class="docutils" />
+<section id="exercise-i-sum-of-harmonic-series">
+<h3>Exercise I: sum of harmonic series<a class="headerlink" href="#exercise-i-sum-of-harmonic-series" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Please write a function called <code class="docutils literal notranslate"><span class="pre">harSum</span></code> that aims to return you the sum of a harmonic series <span class="math notranslate nohighlight">\(\displaystyle\sum_{k=1}^{n}\frac{1}{k}\)</span></p></li>
+</ul>
+<hr class="docutils" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">harSum</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assume that n is a positive integer</span>
+<span class="sd">    Return the sum of n harmonic series</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 自己想</span>
+
+    <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Test your function with different inputs <span class="math notranslate nohighlight">\(n\)</span>, for example, <code class="docutils literal notranslate"><span class="pre">harSum(87)</span></code>.</p></li>
+</ul>
+</section>
+<section id="exercise-ii-fibonacci-number">
+<h3>Exercise II: Fibonacci number<a class="headerlink" href="#exercise-ii-fibonacci-number" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Please write a function called <code class="docutils literal notranslate"><span class="pre">fib</span></code> that aims to return you the <span class="math notranslate nohighlight">\(n^{th}\)</span> Fibonacci number <span class="math notranslate nohighlight">\(F_n\)</span></p>
+<ul>
+<li><p>Definition of Fibonacci number</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(F_0 = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F_1 = 1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F_n = F_{n-1} + F_{n-2}\)</span></p></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assume that n is a positive integer</span>
+<span class="sd">    Return the nth Fibonacci number</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 自己想</span>
+
+    <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Test your function with different inputs <span class="math notranslate nohighlight">\(n\)</span>, for example, <code class="docutils literal notranslate"><span class="pre">fib(10)</span></code>.</p></li>
+</ul>
+<p><a id="tag2"></a></p>
+</section>
+</section>
+<section id="global-variable">
+<h2><strong>Global variable</strong><a class="headerlink" href="#global-variable" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Try this</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F(</span><span class="si">{}</span><span class="s2">) is </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">fib</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Use global variable to pass the variables inside the scope of a function</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">numFibCalls</span>
+
+    <span class="n">numFibCalls</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">testFib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">numFibCalls</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="n">numFibCalls</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F(</span><span class="si">{}</span><span class="s2">) is </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">fib</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# of fib calls = </span><span class="si">{}</span><span class="s2"> times.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numFibCalls</span><span class="p">))</span>
+
+<span class="n">testFib</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F(0) is 0.
+# of fib calls = 1 times.
+F(5) is 5.
+# of fib calls = 15 times.
+F(10) is 55.
+# of fib calls = 177 times.
+F(15) is 610.
+# of fib calls = 1973 times.
+F(20) is 6765.
+# of fib calls = 21891 times.
+F(25) is 75025.
+# of fib calls = 242785 times.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F(30) is 832040.
+# of fib calls = 2692537 times.
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="tag3"></a></p>
+</section>
+<section id="dictionaries">
+<h2><strong>Dictionaries</strong><a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>A non-scalar, non-sequenced, and mutable type object</p></li>
+<li><p>Syntax: <code class="docutils literal notranslate"><span class="pre">ArbDict</span> <span class="pre">=</span> <span class="pre">{key1:</span> <span class="pre">value1,</span> <span class="pre">key2:</span> <span class="pre">value2,</span> <span class="pre">key3:</span> <span class="pre">value3,</span> <span class="pre">...}</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ArbDict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="mi">456</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="s2">&quot;YangMing&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;ChiaoTung&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ArbDict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="mi">456</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="s2">&quot;YangMing&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;ChiaoTung&quot;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ArbDict</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ArbDict</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>123
+456
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ArbDict</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">ArbDict</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="ne">KeyError</span>: 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ArbDict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ArbDict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="add-additional-key-to-dict">
+<h3>Add additional <code class="docutils literal notranslate"><span class="pre">key</span></code> to <code class="docutils literal notranslate"><span class="pre">dict</span></code><a class="headerlink" href="#add-additional-key-to-dict" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ArbDict</span><span class="p">[</span><span class="s2">&quot;NewKey&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9876543210</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># keys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ArbDict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ArbDict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<span class="c1"># For more operations... VS code will show you</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Efficient function for Fibonacci number</span>
+
+<span class="k">def</span> <span class="nf">fibEff</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assume that n is a positive integer</span>
+<span class="sd">    Return the nth Fibonacci number</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">numFibEffCalls</span>
+    <span class="n">numFibEffCalls</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">d</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">fibEff</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibEff</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">ans</span>
+        <span class="k">return</span> <span class="n">ans</span>
+
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">numFibEffCalls</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F(</span><span class="si">{}</span><span class="s2">) is </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">fibEff</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">d</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# of FibEff calls = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numFibEffCalls</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id="tag4"></a></p>
+</section>
+</section>
+<section id="function-with-multiple-input-arguments">
+<h2><strong>Function with multiple input arguments</strong><a class="headerlink" href="#function-with-multiple-input-arguments" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>If there are multiple input arguments in a function, you can use <code class="docutils literal notranslate"><span class="pre">*args</span></code> and <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> to pass multiple arguments to function.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Parameters</p></th>
+<th class="head text-center"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">*args</span></code></p></td>
+<td class="text-center"><p>A tuple of positional arguments values.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code></p></td>
+<td class="text-center"><p>A dict of keyword arguments values.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example for *args</span>
+
+<span class="k">def</span> <span class="nf">test_func1</span><span class="p">(</span><span class="n">numList</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">numList</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;args:&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;习近平小熊维尼&quot;</span><span class="p">,</span> <span class="s2">&quot;黨說不缺水不缺電不缺蛋不缺工不缺疫苗&quot;</span><span class="p">]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;OO地區沒有勞基法&quot;</span><span class="p">]</span>
+
+<span class="n">test_func1</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">test_func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example for **kwargs</span>
+
+<span class="k">def</span> <span class="nf">test_func2</span><span class="p">(</span><span class="n">numList</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">numList</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;kwargs:&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;习近平小熊维尼&quot;</span><span class="p">,</span> <span class="s2">&quot;黨說不缺水不缺電不缺蛋不缺工不缺疫苗&quot;</span><span class="p">]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;OO地區沒有勞基法&quot;</span><span class="p">]</span>
+
+
+<span class="n">test_func2</span><span class="p">(</span>
+           <span class="n">a</span><span class="p">,</span> 
+           <span class="n">item1</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> 
+           <span class="n">item2</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> 
+           <span class="n">item3</span><span class="o">=</span><span class="n">d</span><span class="p">,</span>
+          <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using *args and **kwargs in the same time</span>
+
+<span class="k">def</span> <span class="nf">test_func3</span><span class="p">(</span><span class="n">numList</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">numList</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;args:&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;kwargs:&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+<span class="n">test_func3</span><span class="p">(</span>
+           <span class="n">a</span><span class="p">,</span>
+           <span class="n">b</span><span class="p">,</span>
+           <span class="n">item1</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+           <span class="n">item2</span><span class="o">=</span><span class="n">d</span><span class="p">,</span>
+          <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="exercise-iii-sum-of-geometric-series">
+<h3>Exercise III: sum of geometric series<a class="headerlink" href="#exercise-iii-sum-of-geometric-series" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Please write a function called <code class="docutils literal notranslate"><span class="pre">geoSum</span></code> that aims to return you the sum of a harmonic series <span class="math notranslate nohighlight">\(\displaystyle\sum_{k=1}^{n}\frac{1}{2^k}\)</span></p></li>
+</ul>
+<hr class="docutils" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">geoSum</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assume that n is a positive integer</span>
+<span class="sd">    Return the sum of n geometric series</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 自己想</span>
+
+    <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Test your function with different inputs <span class="math notranslate nohighlight">\(n\)</span>, for example, <code class="docutils literal notranslate"><span class="pre">geoSum(87)</span></code>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters\06"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../05/chap05.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tuples, Lists, Mutability, Aliasing, and Cloning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../07/chap07.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Modules, Packages, Exception, and Assertion</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today"><strong>Today</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursion"><strong>Recursion</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-i-multiplication">Example I: multiplication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-ii-factorial">Example II: factorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#think-carefully-before-you-programming">Think carefully before you programming</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-i-sum-of-harmonic-series">Exercise I: sum of harmonic series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-ii-fibonacci-number">Exercise II: Fibonacci number</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-variable"><strong>Global variable</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries"><strong>Dictionaries</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-additional-key-to-dict">Add additional <code class="docutils literal notranslate"><span class="pre">key</span></code> to <code class="docutils literal notranslate"><span class="pre">dict</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-with-multiple-input-arguments"><strong>Function with multiple input arguments</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-iii-sum-of-geometric-series">Exercise III: sum of geometric series</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chieh-En Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
