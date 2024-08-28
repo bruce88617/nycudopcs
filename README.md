@@ -9,18 +9,11 @@
   2. **Admit Taiwan :taiwan: is an independent country, not part of China.**
 
 
-## 112A 雞腿便當指數
+## 113A ???
 
 |#|Date|Person|
 |:--:|:--:|:--:|
-|1|2023.9.18|112514013, 112514018, 112514021, 112514035|
-|2|2023.9.25|112514034, 112514035|
-|3|2023.10.2|X|
-|4|2023.10.16|112514035|
-|5|2023.10.23|X|
-|6|2023.10.30|112514023|
-|7|2023.11.6|X|
-|8|2023.11.13|X|
+|1|???|???|
 
 
 ## What do we want to give you in this course?
@@ -99,12 +92,13 @@ root
   |      |     ├─ data                # Data for this lecture
   |      |     └─ Lecture13.ipynb
   |      |
-  |      ├─ Lecture14                 # Lecture 14: Data Analysis with Python
-  |      |     ├─ assets              # Images in the handouts
-  |      |     ├─ data                # Data for this lecture
-  |      |     └─ Lecture14.ipynb
-  |      |
-  |      └─ Lecture15                 # Lecture 15: Introduction to Concurrency and Parallelism
+  |      └─ Lecture14                 # Lecture 14: Data Analysis with Python
+  |            ├─ assets              # Images in the handouts
+  |            ├─ data                # Data for this lecture
+  |            └─ Lecture14.ipynb
+  |
+  ├─ Archives                         # Folder for the archive
+  |      └─ A01                       # A01: Introduction to Concurrency and Parallelism
   |            ├─ assets              # Images in the handouts
   |            ├─ examples            # Example scripts for this lecture
   |            └─ Lecture15.ipynb
