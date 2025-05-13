@@ -101,10 +101,41 @@ root
   |      |     ├─ data                # Data for this lecture
   |      |     └─ Lecture13.ipynb
   |      |
-  |      └─ Lecture14                 # Lecture 14: Data Analysis with Python
+  |      ├─ Lecture14                 # Lecture 14: Data Analysis and More Data Visualization with Python I
+  |      |     ├─ assets              # Images in the handouts
+  |      |     ├─ data                # Data for this lecture
+  |      |     └─ Lecture14.ipynb
+  |      |
+  |      ├─ Lecture15                 # Lecture 15: Data Analysis and More Data Visualization with Python II
+  |      |     ├─ assets              # Images in the handouts
+  |      |     ├─ data                # Data for this lecture
+  |      |     └─ Lecture15.ipynb
+  |      |
+  |      ├─ Lecture16                 # Lecture 16: Knapsack Problems, Dynamic Programming, and Graph Optimization Problems
+  |      |     ├─ assets              # Images in the handouts
+  |      |     ├─ scripts             # Scripts for this lecture
+  |      |     └─ Lecture16.ipynb
+  |      |
+  |      ├─ Lecture17                 # Lecture 17: Random Walks and Stochastic Programs
+  |      |     ├─ assets              # Images in the handouts
+  |      |     ├─ scripts             # Scripts for this lecture
+  |      |     └─ Lecture17.ipynb
+  |      |
+  |      ├─ Lecture18                 # Lecture 18: Limit Theorems and Monte Carlo Method
+  |      |     ├─ assets              # Images in the handouts
+  |      |     ├─ scripts             # Scripts for this lecture
+  |      |     └─ Lecture18.ipynb
+  |      |
+  |      ├─ Lecture19                 # Lecture 19: Introduction to Statistical Inference
+  |      |     ├─ assets              # Images in the handouts
+  |      |     ├─ scripts             # Scripts for this lecture
+  |      |     └─ Lecture19.ipynb
+  |      |
+  |      └─ Lecture20                 # Lecture 20: Randomized Trials and Hypothesis Checking
   |            ├─ assets              # Images in the handouts
   |            ├─ data                # Data for this lecture
-  |            └─ Lecture14.ipynb
+  |            ├─ scripts             # Scripts for this lecture
+  |            └─ Lecture20.ipynb
   |
   ├─ Archives                         # Folder for the archive
   |      └─ A01                       # A01: Introduction to Concurrency and Parallelism
